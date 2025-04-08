@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>DB Latency Monitor</title>
+  <link rel="stylesheet" href="style.css" />
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/chartjs-adapter-date-fns"></script>
+  <script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-zoom"></script>
+</head>
+<body>
+  <h1>DB Latency Monitor</h1>
+
+  <div id="config">
+    <label>Backend API Base URL:
+      <input type="text" id="apiBase" placeholder="https://localhost:5000" />
+    </label>
+    <button id="startButton" onclick="startMonitoring()">START</button>
+    <button id="stopButton" onclick="stopMonitoring()" style="display: none;">STOP</button>
+  </div>
+
+  <div class="main-container">
+    <!-- Left: Info and Event Log -->
+    <div class="info-log-section">
+      <div id="info-container">
+        <p><strong>CLIENT VM:</strong> <span id="enquirySource">NOT AVAILABLE</span></p>
+        <hr>
+        <p><strong>Enquiry Direction:</strong> <span id="enquiryDirection">Not Available</span></p>
+        <p><strong>Dataguard Direction:</strong> <span id="replicationDirection">Not Available</span></p>
+        <hr>
+        <p><strong>Primary Availability Zone:</strong> <span id="az">Not Connected</span></p>
+        <p><strong>Standby Availability Zone:</strong> <span id="standbyAz">Not Connected</span></p>
+        <hr>
+        <p><strong>Events</strong></p>
+        <div id="log-container" class="log-container"></div>
+      </div>
+    </div>
+
+    <!-- Right: Chart -->
+    <div class="chart-section">
+      <div id="chart-container">
+        <canvas id="latencyChart"></canvas>
+      </div>
+    </div>
+  </div>
+
+  <script src="app.js"></script>
+</body>
+</html>
